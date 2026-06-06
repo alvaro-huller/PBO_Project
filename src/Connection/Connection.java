@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * @author lenovo
  */
 public class Connection {
-    private static final String URL = "jdbc:mysql://localhost:3306/klinik_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/gudangmerahputih_db";
 
     private static final String USER = "root";
     private static final String PASS = "";
