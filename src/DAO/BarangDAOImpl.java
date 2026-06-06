@@ -16,7 +16,7 @@ public class BarangDAOImpl implements BarangDAO{
     // CREATE
     @Override
     public boolean tambahBarang(Barang barang) {
-        String sql = "INSERT INTO barang (nama_barang, kategori, satuan, harga_per_satuan) " + "VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO barang (nama_barang, kategori, satuan, harga_per_satuan, stok) " + "VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
             ps.setString(1, barang.getNamaBarang());
@@ -88,13 +88,14 @@ public class BarangDAOImpl implements BarangDAO{
     // UPDATE
     @Override
     public boolean updateBarang(Barang barang) {
-        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ? " + "WHERE id = ?";
+        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ?, stok = ?" + "WHERE id = ?";
         try {
             PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
             ps.setString(1, barang.getNamaBarang());
             ps.setString(2, barang.getKategori());
             ps.setString(3, barang.getSatuan());
             ps.setInt   (4, barang.getHargaPerSatuan());
+            ps.setInt   (5, barang.getStok());
             ps.setInt   (5, barang.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
