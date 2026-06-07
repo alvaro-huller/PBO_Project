@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
-import Connection.Connection;
+import Connection.koneksi;
 import Model.Barang;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class BarangDAOImpl implements BarangDAO{
     public boolean tambahBarang(Barang barang) {
         String sql = "INSERT INTO barang (nama_barang, kategori, satuan, harga_per_satuan, stok) " + "VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setString(1, barang.getNamaBarang());
             ps.setString(2, barang.getKategori());
             ps.setString(3, barang.getSatuan());
@@ -37,7 +37,7 @@ public class BarangDAOImpl implements BarangDAO{
         List<Barang> list = new ArrayList<>();
         String sql = "SELECT * FROM barang ORDER BY id ASC";
         try {
-            Statement st = Connection.getConnection().createStatement();
+            Statement st = koneksi.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
                 list.add(mapRow(rs));
@@ -53,7 +53,7 @@ public class BarangDAOImpl implements BarangDAO{
     public Barang getBarangById(int id) {
         String sql = "SELECT * FROM barang WHERE id = ?";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -71,7 +71,7 @@ public class BarangDAOImpl implements BarangDAO{
         List<Barang> list = new ArrayList<>();
         String sql = "SELECT * FROM barang " + "WHERE nama_barang LIKE ? OR kategori LIKE ?";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             String param = "%" + keyword + "%";
             ps.setString(1, param);
             ps.setString(2, param);
@@ -88,15 +88,15 @@ public class BarangDAOImpl implements BarangDAO{
     // UPDATE
     @Override
     public boolean updateBarang(Barang barang) {
-        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ?, stok = ?" + "WHERE id = ?";
+        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ?, stok = ? " + "WHERE id = ?";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setString(1, barang.getNamaBarang());
             ps.setString(2, barang.getKategori());
             ps.setString(3, barang.getSatuan());
             ps.setInt   (4, barang.getHargaPerSatuan());
             ps.setInt   (5, barang.getStok());
-            ps.setInt   (5, barang.getId());
+            ps.setInt   (6, barang.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Gagal update barang: " + e.getMessage());
@@ -111,7 +111,7 @@ public class BarangDAOImpl implements BarangDAO{
     public boolean deleteBarang(int id) {
         String sql = "DELETE FROM barang WHERE id = ?";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -136,7 +136,7 @@ public class BarangDAOImpl implements BarangDAO{
 
         String sql = "UPDATE barang SET stok = stok - ? WHERE id = ?";
         try {
-            PreparedStatement ps = Connection.getConnection().prepareStatement(sql);
+            PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setInt(1, jumlahBeli);
             ps.setInt(2, idBarang);
             return ps.executeUpdate() > 0;
