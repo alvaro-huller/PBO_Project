@@ -22,7 +22,7 @@ public class AdminKelolaDataController {
     private BarangDAOImpl dao;
     
     public AdminKelolaDataController() {
-        
+        view = new AdminKelolaData(this);
     }
     
     public void run() {

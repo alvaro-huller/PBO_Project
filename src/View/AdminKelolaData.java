@@ -20,7 +20,8 @@ public class AdminKelolaData extends javax.swing.JFrame {
     /**
      * Creates new form AdminKelolaData
      */
-    public AdminKelolaData() {
+    public AdminKelolaData(AdminKelolaDataController controller) {
+        setController(controller);
         initComponents();
     }
 
@@ -299,7 +300,7 @@ public class AdminKelolaData extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AdminKelolaData().setVisible(true));
+//        java.awt.EventQueue.invokeLater(() -> new AdminKelolaData().setVisible(true));
     }
 
     void setController(AdminKelolaDataController controller) {
