@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.CustomerDashboardController;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ALVA
@@ -11,11 +16,13 @@ package View;
 public class CustomerDashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CustomerDashboard.class.getName());
-
+    private CustomerDashboardController controller;
+    
     /**
      * Creates new form CustomerDashboard
      */
-    public CustomerDashboard() {
+    public CustomerDashboard(CustomerDashboardController controller) {
+        setController(controller);
         initComponents();
     }
 
@@ -48,6 +55,7 @@ public class CustomerDashboard extends javax.swing.JFrame {
         Stok = new javax.swing.JTextField();
         JumlahBeli = new javax.swing.JTextField();
         HargaTotal = new javax.swing.JTextField();
+        clear = new javax.swing.JButton();
 
         jTextField4.setText("jTextField2");
 
@@ -95,18 +103,9 @@ public class CustomerDashboard extends javax.swing.JFrame {
         });
 
         Cari.setText("Cari barang");
-        Cari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CariMouseClicked(evt);
-            }
-        });
 
         ButtonCari.setText("Cari");
-        ButtonCari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ButtonCariMouseClicked(evt);
-            }
-        });
+        ButtonCari.addActionListener(this::ButtonCariActionPerformed);
 
         jLabel1.setText("Nama");
 
@@ -132,7 +131,21 @@ public class CustomerDashboard extends javax.swing.JFrame {
 
         Stok.setEditable(false);
 
+        JumlahBeli.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                JumlahBeliKeyReleased(evt);
+            }
+        });
+
         HargaTotal.setEditable(false);
+
+        clear.setText("Clear");
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearMouseClicked(evt);
+            }
+        });
+        clear.addActionListener(this::clearActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,35 +153,40 @@ public class CustomerDashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ButtonCari))
-                        .addComponent(ButtonBeli))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(Nama, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Kategori)
-                            .addComponent(Satuan)
-                            .addComponent(HargaSatuan)
-                            .addComponent(Stok)
-                            .addComponent(JumlahBeli)
-                            .addComponent(HargaTotal))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(HargaTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(JumlahBeli, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Stok, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(HargaSatuan, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Satuan, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Kategori, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Nama, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(Cari, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ButtonCari)))
+                        .addGap(0, 38, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(clear)
+                        .addGap(41, 41, 41)
+                        .addComponent(ButtonBeli)
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +225,11 @@ public class CustomerDashboard extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(HargaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ButtonBeli)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonBeli)
+                    .addComponent(clear))
+                .addContainerGap(48, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -218,19 +238,31 @@ public class CustomerDashboard extends javax.swing.JFrame {
 
     private void TabelCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabelCustomerMouseClicked
         // TODO add your handling code here:
+        controller.tabelMouseClickedHandle();
     }//GEN-LAST:event_TabelCustomerMouseClicked
-
-    private void CariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CariMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CariMouseClicked
-
-    private void ButtonCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonCariMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonCariMouseClicked
 
     private void ButtonBeliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButtonBeliMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonBeliMouseClicked
+
+    private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
+        controller.clearMouseClickedHandle();
+    }//GEN-LAST:event_clearMouseClicked
+
+    private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
+        // TODO add your handling code here:
+        controller.clearMouseClickedHandle();
+    }//GEN-LAST:event_clearActionPerformed
+
+    private void ButtonCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCariActionPerformed
+        // TODO add your handling code here:
+        controller.tombolCariMouseClickedHandle();
+    }//GEN-LAST:event_ButtonCariActionPerformed
+
+    private void JumlahBeliKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JumlahBeliKeyReleased
+        // TODO add your handling code here:
+        controller.jumlahBeliHandle();
+    }//GEN-LAST:event_JumlahBeliKeyReleased
 
     /**
      * @param args the command line arguments
@@ -254,9 +286,88 @@ public class CustomerDashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CustomerDashboard().setVisible(true));
+//        java.awt.EventQueue.invokeLater(() -> new CustomerDashboard().setVisible(true));
     }
 
+    void setController(CustomerDashboardController controller) {
+        this.controller = controller;
+    }
+    
+    public DefaultTableModel getTableModel() {
+        return (DefaultTableModel) this.TabelCustomer.getModel();
+    }
+    
+    public JTable getTable() {
+        return this.TabelCustomer;
+    }
+    
+    public void setNama(String s) {
+        this.Nama.setText(s);
+    }
+
+    public String getNama() {
+        return this.Nama.getText();
+    }
+    
+    public void setKategori(String s) {
+        this.Kategori.setText(s);
+    }
+
+    public String getKategori() {
+        return this.Kategori.getText();
+    }
+    
+    public void setSatuan(String s) {
+        this.Satuan.setText(s);
+    }
+
+    public String getSatuan() {
+        return this.Satuan.getText();
+    }
+    
+    public void setHarga(String s) {
+        this.HargaSatuan.setText(s);
+    }
+
+    public String getHarga() {
+        return this.HargaSatuan.getText();
+    }
+    
+    public void setStok(String s) {
+        this.Stok.setText(s);
+    }
+
+    public String getStok() {
+        return this.Stok.getText();
+    }
+    
+    public void setTextCari(String s) {
+        this.Cari.setText(s);
+    }
+
+    public String getTextCari() {
+        return this.Cari.getText();
+    }
+    
+    public void setJumlahBeli(String s) {
+        this.JumlahBeli.setText(s);
+    }
+
+    public String getJumlahBeli() {
+        return this.JumlahBeli.getText();
+    }
+
+    public void setHargaTotal(String s) {
+        this.HargaTotal.setText(s);
+    }
+
+    public String getHargaTotal() {
+        return this.HargaTotal.getText();
+    }
+    
+
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonBeli;
     private javax.swing.JButton ButtonCari;
@@ -269,6 +380,7 @@ public class CustomerDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField Satuan;
     private javax.swing.JTextField Stok;
     private javax.swing.JTable TabelCustomer;
+    private javax.swing.JButton clear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
