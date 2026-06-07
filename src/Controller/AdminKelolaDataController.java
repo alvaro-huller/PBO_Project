@@ -22,6 +22,8 @@ public class AdminKelolaDataController {
     private BarangDAOImpl dao;
     
     public AdminKelolaDataController() {
+        this.controller = controller;
+        this.dao = new BarangDAOImpl();
         view = new AdminKelolaData(this);
     }
     
@@ -126,14 +128,14 @@ public class AdminKelolaDataController {
                 String kategori = null;
                 int kategoriidx = view.getKategori();
                 if(kategoriidx == 1) {
-                    kategori = "";
+                    kategori = "Material bangunan utama";
                 } else if(kategoriidx == 2) {
-                    kategori = "";
+                    kategori = "Besi & baja";
                 } else if(kategoriidx == 3) {
-                    kategori =  "";
+                    kategori = "Material dinding & lantai";
                 } else if(kategoriidx == 4) {
-                    kategori = "";
-                }else {
+                    kategori = "Cat";
+                } else {
                     kategori = "";
                 }
                 

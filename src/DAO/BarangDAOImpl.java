@@ -88,7 +88,7 @@ public class BarangDAOImpl implements BarangDAO{
     // UPDATE
     @Override
     public boolean updateBarang(Barang barang) {
-        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ?, stok = ?" + "WHERE id = ?";
+        String sql = "UPDATE barang " + "SET nama_barang = ?, kategori = ?, satuan = ?, harga_per_satuan = ?, stok = ? " + "WHERE id = ?";
         try {
             PreparedStatement ps = koneksi.getConnection().prepareStatement(sql);
             ps.setString(1, barang.getNamaBarang());
@@ -96,7 +96,7 @@ public class BarangDAOImpl implements BarangDAO{
             ps.setString(3, barang.getSatuan());
             ps.setInt   (4, barang.getHargaPerSatuan());
             ps.setInt   (5, barang.getStok());
-            ps.setInt   (5, barang.getId());
+            ps.setInt   (6, barang.getId());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("Gagal update barang: " + e.getMessage());
