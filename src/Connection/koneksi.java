@@ -4,6 +4,7 @@
  */
 package Connection;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -11,16 +12,16 @@ import java.sql.SQLException;
  *
  * @author lenovo
  */
-public class Connection {
+public class koneksi {
     private static final String URL = "jdbc:mysql://localhost:3306/gudangmerahputih_db";
 
     private static final String USER = "root";
     private static final String PASS = "";
-    private static java.sql.Connection connection = null;
+    private static Connection connection = null;
 
-    private Connection() {}
+    private koneksi() {}
 
-    public static java.sql.Connection getConnection() {
+    public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
