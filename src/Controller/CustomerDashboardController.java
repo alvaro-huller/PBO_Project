@@ -68,6 +68,7 @@ public class CustomerDashboardController {
             String stok = tabel.getValueAt(baris, 5).toString();
 
             // set data ke field inputan
+            view.setIdSelected(id);
             view.setNama(nama);
             view.setKategori(kategori);
             view.setSatuan(satuan);
@@ -145,7 +146,7 @@ public class CustomerDashboardController {
     try {
         // 1. Ambil input dari form (Sesuaikan nama txtIdBarang dan txtJumlahBeli 
         // dengan nama variabel komponen GUI yang ada di form kamu)
-        int idBarang = Integer.parseInt(view.getStok());
+        int idBarang = Integer.parseInt(view.getIdSelected());
         int jumlahBeli = Integer.parseInt(view.getJumlahBeli());
         
         // 3. Panggil method kurangiStok dan tampung hasil boolean-nya

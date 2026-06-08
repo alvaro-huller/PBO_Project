@@ -284,6 +284,7 @@ public class CustomerDashboard extends javax.swing.JFrame {
         /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(() -> new CustomerDashboard().setVisible(true));
     }
+    private String idSelected;
 
     void setController(CustomerDashboardController controller) {
         this.controller = controller;
@@ -295,6 +296,14 @@ public class CustomerDashboard extends javax.swing.JFrame {
     
     public JTable getTable() {
         return this.TabelCustomer;
+    }
+
+    public String getIdSelected() {
+        return idSelected;
+    }
+
+    public void setIdSelected(String idSelected) {
+        this.idSelected = idSelected;
     }
     
     public void setNama(String s) {
