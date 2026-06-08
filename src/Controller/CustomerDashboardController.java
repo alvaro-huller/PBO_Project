@@ -17,14 +17,17 @@ import javax.swing.table.DefaultTableModel;
  * @author ALVA
  */
 public class CustomerDashboardController {
-    private CustomerDashboardController controller;
+    private MenuLoginController controller;
     private CustomerDashboard view;
     private BarangDAOImpl dao;
     
     public CustomerDashboardController() {
-        this.controller = controller;
         this.dao = new BarangDAOImpl();
         view = new CustomerDashboard(this);
+    }
+    
+    public void setController(MenuLoginController controller) {
+        this.controller =  controller;
     }
     
         public void run() {

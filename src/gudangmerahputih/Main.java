@@ -39,12 +39,13 @@ public class Main {
         atdc.setController(ammc);
         
         // Customer
+        cdc.setController(mlc);
         
         // Autentikasi
         mlc.setController(akdc, cdc);
         
         // Running
-        ammc.run();
+        mlc.run();
     }
     
 }
