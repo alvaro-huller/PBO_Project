@@ -29,6 +29,7 @@ public class AdminMainMenuController {
     public void setController(AdminKelolaDataController akdc, AdminTambahDataController atdc, MenuLoginController mlc) {
         this.akdc = akdc;
         this.atdc = atdc;
+        this.mlc = mlc;
     }
     
     public void kelolaMouseClickedHandle() {

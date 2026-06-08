@@ -26,7 +26,7 @@ public class CustomerDashboardController {
         view = new CustomerDashboard(this);
     }
     
-    public void setController(MenuLoginController controller) {
+    public void setController(MenuLoginController mlc) {
         this.mlc =  mlc;
     }
     

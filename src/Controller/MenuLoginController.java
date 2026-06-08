@@ -60,12 +60,14 @@ public class MenuLoginController {
             if (user instanceof Admin) {
             JOptionPane.showMessageDialog(null, "Login berhasil sebagai Admin!");
             view.dispose();
+            clearMouseClickedHandle();
             ammc.run();
                         
         }
         else if (user instanceof Customer) {
             JOptionPane.showMessageDialog(null, "Login berhasil sebagai Customer!");
             view.dispose();
+            clearMouseClickedHandle();
             cdc.run();
         }
         else {
