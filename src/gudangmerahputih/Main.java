@@ -42,7 +42,7 @@ public class Main {
         cdc.setController(mlc);
         
         // Autentikasi
-        mlc.setController(akdc, cdc);
+        mlc.setController(ammc, cdc);
         
         // Running
         mlc.run();

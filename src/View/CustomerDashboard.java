@@ -56,6 +56,7 @@ public class CustomerDashboard extends javax.swing.JFrame {
         JumlahBeli = new javax.swing.JTextField();
         HargaTotal = new javax.swing.JTextField();
         clear = new javax.swing.JButton();
+        LogOut = new javax.swing.JButton();
 
         jTextField4.setText("jTextField2");
 
@@ -143,6 +144,9 @@ public class CustomerDashboard extends javax.swing.JFrame {
         });
         clear.addActionListener(this::clearActionPerformed);
 
+        LogOut.setText("Log Out");
+        LogOut.addActionListener(this::LogOutActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,10 +184,15 @@ public class CustomerDashboard extends javax.swing.JFrame {
                                 .addGap(33, 33, 33))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ButtonBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LogOut)
+                                .addGap(173, 173, 173))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +233,9 @@ public class CustomerDashboard extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonBeli)
                     .addComponent(clear))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(LogOut)
+                .addContainerGap(8, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
@@ -259,6 +270,11 @@ public class CustomerDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.BeliBarangHandle();
     }//GEN-LAST:event_ButtonBeliActionPerformed
+
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        // TODO add your handling code here:
+        controller.logoutMouseClickedHandle();
+    }//GEN-LAST:event_LogOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,6 +397,7 @@ public class CustomerDashboard extends javax.swing.JFrame {
     private javax.swing.JTextField HargaTotal;
     private javax.swing.JTextField JumlahBeli;
     private javax.swing.JTextField Kategori;
+    private javax.swing.JButton LogOut;
     private javax.swing.JTextField Nama;
     private javax.swing.JTextField Satuan;
     private javax.swing.JTextField Stok;

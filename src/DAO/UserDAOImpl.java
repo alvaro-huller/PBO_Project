@@ -14,19 +14,20 @@ import Model.User;
 public class UserDAOImpl implements UserDAO{
     @Override
     public User login(String username, String password) {
-
         // Superadmin
         if (username.equals("admin") && password.equals("admin123")) {
             return new Admin(username, password, "SUPERADMIN");
         }
-        // Customer
-        if (username.equals("Alva") && password.equals("Alva123")) {
+        // Customer 1
+        if (username.equals("Alva") && password.equals("alva321")) {
             return new Customer(username, password, "Alvaro Huller", "081234567890", "Jl. Malioboro No.1, Yogyakarta");
         }
-        if (username.equals("Nicho") && password.equals("Nicho123")) {
-            return new Customer(username, password, "Nicholaus Hade", "082345678901", "Jl. Kaliurang No.5, Sleman");
+        // Customer 2 (Akun kamu, Nicholaus!)
+        if (username.equals("Vincent") && password.equals("vincennt123")) {
+            return new Customer(username, password, "Vincentius", "082345678901", "Jl. Kaliurang No.5, Sleman");
         }
-        // Login gagal
-        return null;
-    }
+    
+    // Login gagal
+    return null;
+}
 }

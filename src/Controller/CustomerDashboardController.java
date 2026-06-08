@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ALVA
  */
 public class CustomerDashboardController {
-    private MenuLoginController controller;
+    private MenuLoginController mlc;
     private CustomerDashboard view;
     private BarangDAOImpl dao;
     
@@ -27,7 +27,7 @@ public class CustomerDashboardController {
     }
     
     public void setController(MenuLoginController controller) {
-        this.controller =  controller;
+        this.mlc =  mlc;
     }
     
         public void run() {
@@ -146,53 +146,43 @@ public class CustomerDashboardController {
         }
         
         public void BeliBarangHandle(){
-    try {
-        // 1. Ambil input dari form (Sesuaikan nama txtIdBarang dan txtJumlahBeli 
-        // dengan nama variabel komponen GUI yang ada di form kamu)
-        int idBarang = Integer.parseInt(view.getIdSelected());
-        int jumlahBeli = Integer.parseInt(view.getJumlahBeli());
+            try {
+                // 1. Ambil input dari form (Sesuaikan nama txtIdBarang dan txtJumlahBeli 
+                // dengan nama variabel komponen GUI yang ada di form kamu)
+                int idBarang = Integer.parseInt(view.getIdSelected());
+                int jumlahBeli = Integer.parseInt(view.getJumlahBeli());
         
-        // 3. Panggil method kurangiStok dan tampung hasil boolean-nya
-        boolean berhasil = dao.kurangiStok(idBarang, jumlahBeli);
+                // 3. Panggil method kurangiStok dan tampung hasil boolean-nya
+                boolean berhasil = dao.kurangiStok(idBarang, jumlahBeli);
         
-        // 4. Tampilkan notifikasi JOptionPane berdasarkan hasil
-        if (berhasil) {
-            JOptionPane.showMessageDialog(
-                null, 
-                "Pembelian barang berhasil! Stok telah diperbarui.", 
-                "Sukses", 
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                // 4. Tampilkan notifikasi JOptionPane berdasarkan hasil
+                if (berhasil) {
+                    JOptionPane.showMessageDialog(null, "Pembelian barang berhasil! Stok telah diperbarui.", 
+                "Sukses", JOptionPane.INFORMATION_MESSAGE);
             loadData();
-            // TODO: Panggil method untuk refresh tabel atau clear text field di sini
-            // contoh: loadTabel(); atau txtJumlahBeli.setText("");
             
-        } else {
-            JOptionPane.showMessageDialog(
-                null, 
-                "Gagal membeli barang. Pastikan ID barang benar dan stok mencukupi.", 
-                "Gagal", 
-                JOptionPane.ERROR_MESSAGE
-            );
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal membeli barang. Pastikan ID barang benar dan stok mencukupi.", 
+                "Gagal", JOptionPane.ERROR_MESSAGE);
+                }
+        
+            } catch (NumberFormatException e) {
+                // Catch error kalau user input huruf di field yang harusnya angka
+                JOptionPane.showMessageDialog(null, "Input tidak valid! ID dan Jumlah Beli harus berupa angka.", 
+            "Error Input", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Terjadi kesalahan sistem: " + e.getMessage(), 
+            "Error", JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            }
         }
         
-    } catch (NumberFormatException e) {
-        // Catch error kalau user input huruf di field yang harusnya angka
-        JOptionPane.showMessageDialog(
-            null, 
-            "Input tidak valid! ID dan Jumlah Beli harus berupa angka.", 
-            "Error Input", 
-            JOptionPane.ERROR_MESSAGE
-        );
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(
-            null, 
-            "Terjadi kesalahan sistem: " + e.getMessage(), 
-            "Error", 
-            JOptionPane.ERROR_MESSAGE
-        );
-        e.printStackTrace();
-    }
-}
-
+        public void logoutMouseClickedHandle() {
+            try {
+                mlc.run();
+                view.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 }
