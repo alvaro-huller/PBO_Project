@@ -20,6 +20,11 @@ public class MenuLoginController {
         this.view = new MenuLogin(this);
     }
     
+    public void setController(AdminKelolaDataController akdc, CustomerDashboardController cdc) {
+        this.akdc = akdc;
+        this.cdc = cdc;
+    }
+    
     public void run() {
         view.setVisible(true);
     }

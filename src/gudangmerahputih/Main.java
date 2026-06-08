@@ -41,6 +41,7 @@ public class Main {
         // Customer
         
         // Autentikasi
+        mlc.setController(akdc, cdc);
         
         // Running
         ammc.run();

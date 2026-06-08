@@ -68,23 +68,29 @@ public class AdminTambahDataController {
             } else if (kategoriidx == 3) {
                 kategori = "Material dinding & lantai";
             } else if (kategoriidx == 4) {
-                kategori = "Cat DInding";
-            } else {
-                kategori = "";
+                kategori = "Cat";
             }
 
             String satuan = null;
             int satuanidx = view.getSatuan();
             if (satuanidx == 1) {
-                satuan = "";
+                satuan = "Zak";
             } else if (satuanidx == 2) {
-                satuan = "";
+                satuan = "M3";
             } else if (satuanidx == 3) {
-                satuan = "";
+                satuan = "Buah";
             } else if (satuanidx == 4) {
-                satuan = "";
-            } else {
-                satuan = "";
+                satuan = "Kg";
+            } else if (satuanidx == 5) {
+                satuan = "Batang";
+            } else if (satuanidx == 6) {
+                satuan = "Kaleng";
+            } else if (satuanidx == 7) {
+                satuan = "Lembar";
+            } else if (satuanidx == 8) {
+                satuan = "Meter";
+            } else if (satuanidx == 9) {
+                satuan = "Dus";
             }
 
             dao.tambahBarang(new Barang(0, nama, kategori, satuan, Integer.parseInt(harga), Integer.parseInt(stok)));

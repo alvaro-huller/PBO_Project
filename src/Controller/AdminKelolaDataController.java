@@ -96,6 +96,25 @@ public class AdminKelolaDataController {
                 view.setKategori(4);
             }
             
+            if (satuan.equals("Zak")) {
+                view.setSatuan(1);
+            } else if (satuan.equals("M3")) {
+                view.setSatuan(2);
+            } else if (satuan.equals("Buah")) {
+                view.setSatuan(3);
+            } else if (satuan.equals("Kg")) {
+                view.setSatuan(4);
+            } else if (satuan.equals("Batang")) {
+                view.setSatuan(5);
+            } else if (satuan.equals("Kaleng")) {
+                view.setSatuan(6);
+            } else if (satuan.equals("Lembar")) {
+                view.setSatuan(7);
+            } else if (satuan.equals("Meter")) {
+                view.setSatuan(8);
+            } else if (satuan.equals("Dus")) {
+                view.setSatuan(9);
+            }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -137,23 +156,29 @@ public class AdminKelolaDataController {
                     kategori = "Material dinding & lantai";
                 } else if(kategoriidx == 4) {
                     kategori = "Cat";
-                } else {
-                    kategori = "";
                 }
                 
                 String satuan = null;
                 int satuanidx = view.getSatuan();
                 if (satuanidx == 1) {
-                    satuan = "";
+                    satuan = "Zak";
                 } else if (satuanidx == 2) {
-                    satuan = "";
+                    satuan = "M3";
                 } else if (satuanidx == 3) {
-                    satuan = "";
+                    satuan = "Buah";
                 } else if (satuanidx == 4) {
-                    satuan = "";
-                } else {
-                    satuan = "";
-                }
+                    satuan = "Kg";
+                } else if (satuanidx == 5) {
+                    satuan = "Batang";
+                } else if (satuanidx == 6) {
+                    satuan = "Kaleng";
+                } else if (satuanidx == 7) {
+                satuan = "Lembar";
+            } else if (satuanidx == 8) {
+                satuan = "Meter";
+            } else if (satuanidx == 9) {
+                satuan = "Dus";
+            }
                 
                 dao.updateBarang(new Barang(Integer.parseInt(id), nama, kategori, satuan, Integer.parseInt(harga), Integer.parseInt(stok)));
 

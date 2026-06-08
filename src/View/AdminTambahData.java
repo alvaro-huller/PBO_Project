@@ -57,7 +57,7 @@ public class AdminTambahData extends javax.swing.JFrame {
 
         kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Material bangunan utama", "Besi & baja", "Material dinding & lantai", "Cat Dinding" }));
 
-        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satuan", "Zak", "M3", "Buah", "Kg", "Batang", "Kaleng", "Lembar", "Meter", "Dus" }));
 
         jLabel3.setText("Nama Barang");
 
