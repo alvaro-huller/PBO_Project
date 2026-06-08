@@ -22,9 +22,12 @@ public class AdminKelolaDataController {
     private BarangDAOImpl dao;
     
     public AdminKelolaDataController() {
-        this.controller = controller;
         this.dao = new BarangDAOImpl();
         view = new AdminKelolaData(this);
+    }
+    
+    public void setController(AdminMainMenuController controller) {
+        this.controller = controller;
     }
     
     public void run() {
@@ -108,7 +111,6 @@ public class AdminKelolaDataController {
             view.setKategori(0);
             view.setSatuan(0);
             view.setTextCari("");
-            loadData();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
         }

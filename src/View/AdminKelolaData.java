@@ -115,7 +115,7 @@ public class AdminKelolaData extends javax.swing.JFrame {
 
         jLabel7.setText("Stok");
 
-        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Material bangunan utama", "Besi & baja", "Material dinding & lantai", "Cat" }));
+        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Material bangunan utama", "Besi & baja", "Material dinding & lantai", "Cat Dinding" }));
 
         satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satuan", "Item 2", "Item 3", "Item 4" }));
 

@@ -5,6 +5,10 @@
 package gudangmerahputih;
 
 import Controller.AdminKelolaDataController;
+import Controller.AdminMainMenuController;
+import Controller.AdminTambahDataController;
+import Controller.CustomerDashboardController;
+import Controller.MenuLoginController;
 
 /**
  *
@@ -16,8 +20,30 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AdminKelolaDataController adminKelolaDataController = new AdminKelolaDataController();
-        adminKelolaDataController.run();
+        // Controller Admin
+        AdminMainMenuController ammc = new AdminMainMenuController();
+        AdminKelolaDataController akdc = new AdminKelolaDataController();
+        AdminTambahDataController atdc = new AdminTambahDataController();
+        
+        // Controller Customer
+        CustomerDashboardController cdc = new CustomerDashboardController();
+        
+        // Controller Autentikasi
+        MenuLoginController mlc = new MenuLoginController();
+        
+        
+        // Koneksi Controller
+        // Admin
+        ammc.setController(akdc, atdc, mlc);
+        akdc.setController(ammc);
+        atdc.setController(ammc);
+        
+        // Customer
+        
+        // Autentikasi
+        
+        // Running
+        ammc.run();
     }
     
 }

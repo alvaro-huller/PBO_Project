@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.AdminMainMenuController;
+
 /**
  *
  * @author MJNJ
@@ -11,11 +13,13 @@ package View;
 public class AdminMainMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AdminMainMenu.class.getName());
-
+    private AdminMainMenuController controller;
+    
     /**
      * Creates new form AdminMainMenu
      */
-    public AdminMainMenu() {
+    public AdminMainMenu(AdminMainMenuController controller) {
+        setController(controller);
         initComponents();
     }
 
@@ -101,15 +105,15 @@ public class AdminMainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kelolaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kelolaMouseClicked
-        // TODO add your handling code here:
+        controller.kelolaMouseClickedHandle();
     }//GEN-LAST:event_kelolaMouseClicked
 
     private void tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tambahMouseClicked
-        // TODO add your handling code here:
+       controller.tambahMouseClickedHandle();
     }//GEN-LAST:event_tambahMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        // TODO add your handling code here:
+        controller.logoutMouseClickedHandle();
     }//GEN-LAST:event_logoutMouseClicked
 
     /**
@@ -134,7 +138,11 @@ public class AdminMainMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AdminMainMenu().setVisible(true));
+//        java.awt.EventQueue.invokeLater(() -> new AdminMainMenu().setVisible(true));
+    }
+    
+    void setController(AdminMainMenuController controller) {
+        this.controller = controller;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

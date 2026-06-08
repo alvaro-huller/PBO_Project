@@ -277,7 +277,7 @@
             <StringItem index="1" value="Material bangunan utama"/>
             <StringItem index="2" value="Besi &amp; baja"/>
             <StringItem index="3" value="Material dinding &amp; lantai"/>
-            <StringItem index="4" value="Cat"/>
+            <StringItem index="4" value="Cat Dinding"/>
           </StringArray>
         </Property>
       </Properties>
