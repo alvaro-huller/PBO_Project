@@ -62,11 +62,11 @@ public class AdminTambahDataController {
             String kategori = null;
             int kategoriidx = view.getKategori();
             if (kategoriidx == 1) {
-                kategori = "Material bangunan utama";
+                kategori = "Material Bangunan Utama";
             } else if (kategoriidx == 2) {
-                kategori = "Besi & baja";
+                kategori = "Besi & Baja";
             } else if (kategoriidx == 3) {
-                kategori = "Material dinding & lantai";
+                kategori = "Material Dinding & Lantai";
             } else if (kategoriidx == 4) {
                 kategori = "Cat";
             }
@@ -95,7 +95,7 @@ public class AdminTambahDataController {
 
             dao.tambahBarang(new Barang(0, nama, kategori, satuan, Integer.parseInt(harga), Integer.parseInt(stok)));
 
-            JOptionPane.showMessageDialog(null, "Data Film Berhasil Diupdate!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data Barang Berhasil Ditambahkan!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
             clearMouseClickedHandle();
            } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);

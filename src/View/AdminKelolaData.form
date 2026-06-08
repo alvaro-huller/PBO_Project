@@ -274,10 +274,10 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
             <StringItem index="0" value="Pilih Kategori"/>
-            <StringItem index="1" value="Material bangunan utama"/>
-            <StringItem index="2" value="Besi &amp; baja"/>
-            <StringItem index="3" value="Material dinding &amp; lantai"/>
-            <StringItem index="4" value="Cat Dinding"/>
+            <StringItem index="1" value="Material Bangunan Utama"/>
+            <StringItem index="2" value="Besi &amp; Baja"/>
+            <StringItem index="3" value="Material Dinding &amp; Lantai"/>
+            <StringItem index="4" value="Cat"/>
           </StringArray>
         </Property>
       </Properties>
@@ -340,7 +340,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="clear">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CLear"/>
+        <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="clearMouseClicked"/>

@@ -86,11 +86,11 @@ public class AdminKelolaDataController {
             view.setHarga(harga);
             view.setStok(stok);
 
-            if (kategori.equals("Material bangunan utama")) {
+            if (kategori.equals("Material Bangunan Utama")) {
                 view.setKategori(1);
-            } else if (kategori.equals("Besi & baja")) {
+            } else if (kategori.equals("Besi & Baja")) {
                 view.setKategori(2);
-            } else if (kategori.equals("Material dinding & lantai")) {
+            } else if (kategori.equals("Material Dinding & Lantai")) {
                 view.setKategori(3);
             } else if (kategori.equals("Cat")) {
                 view.setKategori(4);
@@ -149,11 +149,11 @@ public class AdminKelolaDataController {
                 String kategori = null;
                 int kategoriidx = view.getKategori();
                 if(kategoriidx == 1) {
-                    kategori = "Material bangunan utama";
+                    kategori = "Material Bangunan Utama";
                 } else if(kategoriidx == 2) {
                     kategori = "Besi & baja";
                 } else if(kategoriidx == 3) {
-                    kategori = "Material dinding & lantai";
+                    kategori = "Material Dinding & Lantai";
                 } else if(kategoriidx == 4) {
                     kategori = "Cat";
                 }
@@ -182,7 +182,7 @@ public class AdminKelolaDataController {
                 
                 dao.updateBarang(new Barang(Integer.parseInt(id), nama, kategori, satuan, Integer.parseInt(harga), Integer.parseInt(stok)));
 
-                JOptionPane.showMessageDialog(null, "Data Film Berhasil Diupdate!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Data Barang Berhasil Diupdate!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
                 clearMouseClickedHandle();
                 loadData();
             }
@@ -205,9 +205,9 @@ public class AdminKelolaDataController {
 
                 if (pilihan == JOptionPane.YES_OPTION) {
                     dao.deleteBarang(Integer.parseInt(id));
-                    JOptionPane.showMessageDialog(null, "Data Film Berhasil Dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Data Barang Berhasil Dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Data Film Batal Dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Data Barang Batal Dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
                 }
                 clearMouseClickedHandle();
                 loadData();

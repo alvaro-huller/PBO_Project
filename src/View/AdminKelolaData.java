@@ -115,7 +115,7 @@ public class AdminKelolaData extends javax.swing.JFrame {
 
         jLabel7.setText("Stok");
 
-        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Material bangunan utama", "Besi & baja", "Material dinding & lantai", "Cat Dinding" }));
+        kategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Material Bangunan Utama", "Besi & Baja", "Material Dinding & Lantai", "Cat" }));
 
         satuan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Satuan", "Zak", "M3", "Buah", "Kg", "Batang", "Kaleng", "Lembar", "Meter", "Dus" }));
 
@@ -143,7 +143,7 @@ public class AdminKelolaData extends javax.swing.JFrame {
             }
         });
 
-        clear.setText("CLear");
+        clear.setText("Clear");
         clear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clearMouseClicked(evt);
