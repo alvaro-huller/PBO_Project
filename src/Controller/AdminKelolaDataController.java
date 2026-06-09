@@ -195,7 +195,7 @@ public class AdminKelolaDataController {
         try {
             String id = view.getId();
 
-            if (id == null) {
+            if (id.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "IdSelect Kosong!", "Warning", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 int pilihan = JOptionPane.showConfirmDialog(null,

@@ -264,6 +264,7 @@ public class AdminKelolaData extends javax.swing.JFrame {
 
     private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
         controller.clearMouseClickedHandle();
+        tabel.clearSelection();
     }//GEN-LAST:event_clearMouseClicked
 
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
